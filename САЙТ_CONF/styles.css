@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box; /* Устанавливаем box-sizing для всех элементов */
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://kartinki.pics/uploads/posts/2021-04/thumbs/1617585011_20-p-fon-dlya-saita-temnii-20.jpg'); /* Фоновое изображение */
+    background-size: cover; /* Заполнение фона */
+    background-position: center; /* Центрирование фона */
+    color: #FFFFFF; /* Белый текст для контраста */
+    display: flex; /* Используем Flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    min-height: 100vh; /* Минимальная высота для растягивания страницы */
+}
+header {
+    background-color: rgba(78, 124, 49, 0.8); /* Полупрозрачный болотный зеленый цвет */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    font-size: 24px;
+    color: #FF4500; /* Оранжевый цвет для логотипа */
+    text-decoration: none;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    color: #FFFFFF; /* Цвет ссылок */
+    text-decoration: none;
+}
+.icons {
+    display: flex;
+    align-items: center;
+}
+.icon {
+    width: 30px;
+    margin-left: 10px;
+}
+.home-button {
+    background-color: #FF4500; /* Оранжевая кнопка */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+main {
+    flex: 1; /* Основной контент занимает доступное пространство */
+    padding: 20px;
+}
+footer {
+    background-color: rgba(78, 124, 49, 0.8); /* Полупрозрачный болотный зеленый цвет подвала */
+    padding: 10px;
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    nav ul li {
+        margin: 5px 0;
+    }
+}
+#projects {
+    padding: 20px;
+    background-color: rgba(78, 124, 49, 0.8); /* Полупрозрачный болотный зеленый цвет */
+    border-radius: 8px; /* Скругление углов */
+    margin: 20px 0; /* Отступы сверху и снизу */
+}
+.project {
+    margin-bottom: 20px; /* Отступ между проектами */
+}
+.project img {
+    max-width: 25%; /* Адаптивная ширина изображения */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    border-radius: 5px; /* Скругление углов изображения */
+}
