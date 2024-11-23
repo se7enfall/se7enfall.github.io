@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Confident - Треки</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Цвет фона для контраста */
+        }
+
+        header {
+            width: 100%; /* Устанавливаем ширину на 100% */
+            background-color: #2c2c2c; /* Цвет фона */
+            color: #fff; 
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень для хедера */
+            position: relative; /* Устанавливаем позиционирование */
+        }
+
+        footer {
+            width: 100%; /* Устанавливаем ширину на 100% */
+            background-color: #2c2c2c; /* Цвет фона */
+            color: #fff; 
+            text-align: center;
+            padding: 20px;
+            position: relative; /* Устанавливаем позиционирование */
+            margin-top: auto; /* Чтобы футер был внизу страницы */
+        }
+
+        main {
+            text-align: center;
+            flex-grow: 1; /* Позволяет main занимать оставшееся пространство */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        audio {
+            width: 100%; /* Занимает всю ширину родителя */
+            max-width: 400px; /* Максимальная ширина аудиоплеера */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Confident</a>
+            <nav>
+                <ul>
+                    <li><a href="about.html">О Сайте</a></li>
+                    <li><a href="services.html">Аудио</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="icons">
+                <a href="https://vk.com/club228117846" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/800px-VK_Compact_Logo_%282021-present%29.svg.png" alt="VK" class="icon">
+                </a>
+                <a href="https://banger-records.bandcamp.com/album/megasuperborg-gizmo" target="_blank">
+                    <img src="https://sun9-64.userapi.com/impg/hyxB1BxkNGfsfe3ZoA9btF9_PsMzFo05lUonFg/HpJx2u275Hw.jpg?size=1200x1200&quality=95&sign=13a0af2013217ba93cadf38b9710680e&type=album" alt="Bandcamp" class="icon">
+                </a>
+                <button class="home-button" onclick="goHome()">Домой</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Треки</h1>
+        <ul>
+            <li>
+                <audio controls>
+                    <source src="Confident - Evolution (Original Mix).mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+                Confident - Evolution (Original Mix)
+            </li>
+            <li>
+                <audio controls>
+                    <source src="Confident - Global Technologies.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+                Confident - Global Technologies
+            </li>
+            <li>
+                <audio controls>
+                    <source src="Confident - Scream.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+                Confident - Scream
+            </li>
+            <li>
+                <audio controls>
+                    <source src="Confident - The Eighth Dimension (Original Mix).mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+                Confident - The Eighth Dimension (Original Mix)
+            </li>
+            <li>
+                <audio controls>
+                    <source src="Сonfident - Lifting Height (Original Mix).mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+                Сonfident - Lifting Height (Original Mix)
+            </li>
+        </ul>
+    </main>
+    <footer>
+        <p>© 2024 Константин. Все права защищены.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
