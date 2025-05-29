@@ -541,6 +541,22 @@
             width: 90%;
         }
         
+        /* Стили для карты */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
         /* Медиазапросы для планшетов и десктопов */
         @media (min-width: 768px) {
             .hero-content h1 {
@@ -732,7 +748,7 @@
         <div class="about-container">
             <h2 class="section-title slide-right">О мастере</h2>
             <div class="about-content">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Мастер кукол" class="about-image slide-left">
+                <img src="https://sun9-26.userapi.com/impg/c626218/v626218891/3c338/fJgE2UM4CgY.jpg?size=1365x2048&quality=96&sign=f4e7a08f8fc961d5f659c6234e492d04&type=album" alt="Мастер кукол" class="about-image slide-left">
                 <div class="slide-right delay-1">
                     <h3>Елена Иванова</h3>
                     <p>Я создаю авторские куклы уже более 15 лет. Начав с простых текстильных кукол, я постепенно освоила различные техники и материалы, включая фарфор, полимерную глину и композитные материалы.</p>
@@ -757,11 +773,7 @@
             <h2 class="section-title slide-left">Мастерская</h2>
             <p class="slide-left delay-1">Моя мастерская - это место, где рождаются куклы. Здесь я создаю, экспериментирую и совершенствую свое мастерство.</p>
             
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 40px;">
-                <img src="https://images.unsplash.com/photo-1605087880633-8c4b2f1a5d7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Мастерская" style="width: 100%; max-width: 400px; border-radius: 10px;" class="scale-in">
-                <img src="https://images.unsplash.com/photo-1605087880633-8c4b2f1a5d7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Инструменты" style="width: 100%; max-width: 400px; border-radius: 10px;" class="scale-in delay-1">
-                <img src="https://images.unsplash.com/photo-1605087880633-8c4b2f1a5d7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Материалы" style="width: 100%; max-width: 400px; border-radius: 10px;" class="scale-in delay-2">
-            </div>
+            
         </div>
     </section>
     
@@ -835,112 +847,43 @@
                 <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
                 <p><i class="fas fa-envelope"></i> info@dollmaster.ru</p>
                 <p><i class="fas fa-map-marker-alt"></i> Санкт-Петербург, ул. Кукольная, 15</p>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Политика конфиденциальности</a>
-                <a href="#">Условия заказа</a>
-                <a href="#contact">Контакты</a>
-                <a href="#">Доставка и оплата</a>
-            </div>
-            <p class="copyright">© 2025 Мастерская авторских кукол. Все права защищены.</p>
-        </div>
-    </footer>
-    
-    <!-- Модальное окно для просмотра изображений -->
-    <div id="imageModal" class="modal">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <img id="modalImg" class="modal-image" src="" alt="">
-            <div class="modal-info" id="modalInfo"></div>
-        </div>
-    </div>
-    
-    <script>
-        // Мобильное меню
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('show');
-        });
-
-        // Плавная прокрутка для якорных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 
-                if (navLinks.classList.contains('show')) {
-                    navLinks.classList.remove('show');
-                }
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+                <!-- Подключение API Яндекс.Карт -->
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<!-- Контейнер для карты -->
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<script type="text/javascript">
+    // Инициализация карты после загрузки API
+    ymaps.ready(function () {
+        // Создаем карту
+        var myMap = new ymaps.Map("map", {
+            center: [55.747, 37.583], // Координаты центра (примерно центр Москвы)
+            zoom: 15
         });
 
-        // Анимация при прокрутке
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.main-nav');
-            if (window.scrollY > 50) {
-                nav.style.backgroundColor = 'rgba(0,0,0,0.9)';
-                nav.style.padding = '10px 0';
-            } else {
-                nav.style.backgroundColor = 'rgba(0,0,0,0.8)';
-                nav.style.padding = '15px 0';
-            }
-            
-            // Анимация элементов при появлении в viewport
-            const animatedElements = document.querySelectorAll('.animated, .slide-left, .slide-right, .scale-in');
-            animatedElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0) translateX(0) scale(1)';
-                }
-            });
+        // Создаем метку с адресом
+        var myPlacemark = new ymaps.Placemark([55.747, 37.583], {
+            hintContent: 'Большая Переяславская ул., 10, Москва',
+            balloonContent: 'Адрес: Большая Переяславская ул., 10, Москва, 129110'
         });
 
-        // Модальное окно для галереи
-        function openModal(imgElement) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImg');
-            const modalInfo = document.getElementById('modalInfo');
-            const dollCard = imgElement.closest('.doll-card');
-            const dollInfo = dollCard.querySelector('.doll-info').cloneNode(true);
-            
-            modalImg.src = imgElement.src;
-            modalImg.alt = imgElement.alt;
-            modalInfo.innerHTML = '';
-            modalInfo.appendChild(dollInfo);
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+        // Добавляем метку на карту
+        myMap.geoObjects.add(myPlacemark);
 
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+        // Опционально: автоматический геокодинг адреса для получения точных координат
+        ymaps.geocode('Большая Переяславская ул., 10, Москва', {
+            results: 1
+        }).then(function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+            var coords = firstGeoObject.geometry.getCoordinates();
 
-        // Закрытие модального окна при клике вне изображения
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('imageModal');
-            if (event.target == modal) {
-                closeModal();
-            }
+            // Центрируем карту на найденных координатах
+            myMap.setCenter(coords, 15);
+
+            // Обновляем метку на точные координаты
+            myPlacemark.geometry.setCoordinates(coords);
         });
-
-        // Инициализация анимации при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            // Анимация элементов при загрузке
-            const animatedElements = document.querySelectorAll('.animated, .slide-left, .
-
-
+    });
+</script>
