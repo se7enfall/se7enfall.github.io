@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUPP | Официальный сайт</title>
+    <title>Мастерская кукол | Официальный сайт</title>
     <style>
         :root {
-            --primary: #ff4d00;
-            --secondary: #000000;
+            --primary: #c27ba0; /* Нежно-розовый */
+            --secondary: #674ea7; /* Фиолетовый */
             --text: #ffffff;
-            --bg: #111111;
+            --bg: #1a1a1a;
+            --light-bg: #2d2d2d;
         }
         
         body {
@@ -25,7 +26,7 @@
             height: 100vh;
             min-height: 500px;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.genius.com/590b5b2518684256b99dfc43ac271abc.999x562x1.jpg');
+                        url('https://gas-kvas.com/uploads/posts/2023-01/1673270191_gas-kvas-com-p-chernie-oboi-s-risunkom-anime-1.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: scroll;
@@ -61,6 +62,7 @@
             background-color: rgba(0,0,0,0.8);
             z-index: 1000;
             padding: 15px 0;
+            transition: all 0.3s ease;
         }
         
         .nav-container {
@@ -121,6 +123,7 @@
             font-size: 2.5rem;
             margin-bottom: 15px;
             text-transform: uppercase;
+            letter-spacing: 3px;
         }
         
         .hero-content p {
@@ -143,7 +146,7 @@
         
         .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 77, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(194, 123, 160, 0.3);
         }
         
         .social-icons {
@@ -175,12 +178,12 @@
             color: var(--primary);
         }
         
-        .latest-release {
+        .gallery-section {
             padding: 60px 20px;
             text-align: center;
         }
         
-        .release-container {
+        .section-container {
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -203,132 +206,65 @@
             background-color: var(--primary);
         }
         
-        .release-card {
-            background-color: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
-            align-items: center;
-            text-align: center;
+            margin-top: 30px;
         }
         
-        .release-cover {
-            width: 180px;
-            height: 180px;
-            border-radius: 5px;
-            object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-            animation: pulse 4s infinite ease-in-out;
+        .doll-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
         }
         
-        .release-cover:hover {
+        .doll-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .doll-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .doll-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            background-color: #000;
+        }
+        
+        .doll-card:hover .doll-image {
             transform: scale(1.05);
         }
         
-        .release-info h3 {
-            font-size: 1.5rem;
+        .doll-info {
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .doll-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .doll-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
             margin-bottom: 10px;
         }
         
-        .release-info p {
-            margin-bottom: 15px;
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-        
-        .audio-player-container {
-            width: 100%;
-            margin-top: 15px;
-        }
-        
-        .custom-audio-player {
-            width: 100%;
-            background-color: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .player-button {
-            background-color: var(--primary);
-            color: var(--text);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-        }
-        
-        .player-button:hover {
-            transform: scale(1.1);
-        }
-        
-        .progress-container {
-            flex-grow: 1;
-            height: 4px;
-            background-color: rgba(255,255,255,0.2);
-            border-radius: 5px;
-            cursor: pointer;
-            min-width: 100px;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background-color: var(--primary);
-            border-radius: 5px;
-            width: 0%;
-        }
-        
-        .time-display {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            min-width: 70px;
-            text-align: right;
-            flex-shrink: 0;
-        }
-        
-        .volume-control {
-            display: none;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .volume-slider {
-            width: 60px;
-        }
-        
-        .stream-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-            width: 100%;
-        }
-        
-        .stream-link {
-            color: var(--text);
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-            display: block;
-            padding: 8px 0;
-        }
-        
-        .stream-link:hover {
-            opacity: 1;
+        .doll-price {
+            font-weight: 600;
+            color: var(--primary);
         }
         
         .about-section {
@@ -351,20 +287,106 @@
             margin: 0 auto;
         }
         
-        .collaborations {
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #000;
+        }
+        
+        .workshop-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             margin-top: 40px;
         }
         
-        .collab-item {
-            background-color: rgba(255,255,255,0.05);
+        .process-step {
+            background-color: var(--light-bg);
             border-radius: 10px;
             padding: 20px;
-            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
         }
         
-        .collab-title {
+        .step-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.05);
+            z-index: 1;
+        }
+        
+        .step-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-title {
             color: var(--primary);
             margin-bottom: 10px;
+        }
+        
+        .contact-section {
+            padding: 60px 20px;
+            background-color: rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: var(--light-bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: var(--text);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary);
         }
         
         footer {
@@ -403,63 +425,138 @@
             font-size: 0.8rem;
         }
 
-        /* New animations for collaboration tracks */
-        .collab-card {
-            flex: 1 1 300px;
-            max-width: 350px;
-            background-color: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            position: relative;
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .collab-card::before {
-            content: '';
-            position: absolute;
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes fadeInHero {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .slide-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        
+        .slide-right {
+            animation: slideInRight 1s ease-out forwards;
+        }
+        
+        .scale-in {
+            animation: scaleIn 1s ease-out forwards;
+        }
+        
+        .hero-animated {
+            animation: fadeInHero 1.5s ease-out forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 77, 0, 0.1), transparent);
-            transition: 0.5s;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow: auto;
         }
-
-        .collab-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(255, 77, 0, 0.2);
+        
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 20px;
         }
-
-        .collab-card:hover::before {
-            left: 100%;
+        
+        .modal-image {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            background-color: #000;
         }
-
-        .collab-image {
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--text);
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary);
+        }
+        
+        .modal-info {
+            margin-top: 20px;
+            text-align: center;
+            max-width: 600px;
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+        }
+        
+        /* Стили для карты */
+        .map-container {
             width: 100%;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: transform 0.5s ease;
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
-        .collab-card:hover .collab-image {
-            transform: scale(1.05);
+        
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
-
-        .collab-card:hover .collab-title {
-            color: #ff4d00;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-
-
-
-
+        
         /* Медиазапросы для планшетов и десктопов */
         @media (min-width: 768px) {
             .hero-content h1 {
@@ -490,27 +587,28 @@
                 padding: 0;
             }
             
-            .release-card {
+            .process-steps {
                 flex-direction: row;
-                text-align: left;
-                padding: 30px;
+                flex-wrap: wrap;
             }
             
-            .stream-links {
-                flex-direction: row;
+            .process-step {
+                flex: 1 1 300px;
             }
             
             .footer-links {
                 flex-direction: row;
             }
             
-            .volume-control {
-                display: flex;
-            }
-            
             .about-content {
                 flex-direction: row;
                 align-items: center;
+            }
+            
+            .about-image {
+                width: 50%;
+                margin-right: 30px;
+                margin-bottom: 0;
             }
         }
 
@@ -529,6 +627,14 @@
                 bottom: auto;
                 transform: translateY(-50%);
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .doll-image-container {
+                height: 300px;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -537,582 +643,245 @@
 <body>
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="index.html" class="logo">MUPP</a>
+            <a href="index.html" class="logo">Кукольная Мастерская</a>
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="music.html">Музыка</a>
-                <a href="video.html">Видео</a>
-                <a href="concerts.html">Концерты</a>
-                <a href="merch.html">Мерч</a>
-                <a href="about.html">Обо мне</a>
-                <a href="contact.html">Контакты</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#about">О мастере</a>
+                <a href="#workshop">Мастерская</a>
+                <a href="#process">Процесс создания</a>
+                <a href="#contact">Контакты</a>
             </div>
         </div>
     </nav>
     
     <div class="social-icons">
-        
-        <a href="https://vk.com/muppbroken" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-vk"></i></a>
+        <a href="https://vk.com/eshadolls" class="social-icon"><i class="fab fa-vk"></i></a>
     </div>
     
     <section class="hero">
         <div class="hero-content">
-            <h1>MUPP</h1>
-            <p>Российский хип-хоп исполнитель из Санкт-Петербурга</p>
-            <button class="cta-button" onclick="document.getElementById('audioPlayer').play()">Слушать новый трек</button>
+            <h1 class="hero-animated">Авторские куклы ручной работы</h1>
+            <p class="hero-animated delay-1">Уникальные персонажи, созданные с душой и вниманием к деталям</p>
+            <button class="cta-button hero-animated delay-2" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})">Посмотреть работы</button>
         </div>
     </section>
     
-    <section class="latest-release">
-        <div class="release-container">
-            <h2 class="section-title">Последний релиз</h2>
-            <div class="release-card">
-                <img src=https://sun9-77.userapi.com/s/v1/ig2/2UORRVytshb6pwSZUUuLhQ4zS9u28QAGnq28AhmZuPc_yl-kIhHhSiUmgbTI8gjgzLOaiSH5fqqrmxPEXM1BUVL4.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=_r__LG1aE1Rzp6GCULs4ITWye0hY0LORYjxRxMdJlqE&cs=807x807 alt="Обложка Vendetta" class="release-cover">
-                <div class="release-info">
-                    <h3>Vendetta</h3>
-                    <p>Сингл • 2023 • Sadfriendd x MUPP</p>
-                    <p>Хитовый трек, покоривший чарты и собравший миллионы прослушиваний</p>
-                    
-                    <div class="audio-player-container">
-                        <audio id="audioPlayer" src="vendetta_-_Sadfriendd_x_MUPP_sped_up_reverb_256_kbps_-_vendetta_-_Sadfriendd_x_MUPP_sped_up_r_(SkySound.cc).mp3"></audio>
-                        <div class="custom-audio-player">
-                            <button class="player-button" onclick="togglePlay()">
-                                <i id="playIcon" class="fas fa-play"></i>
-                            </button>
-                            <div class="progress-container" onclick="seek(event)">
-                                <div class="progress-bar" id="progressBar"></div>
-                            </div>
-                            <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" oninput="setVolume(this.value)">
-                            </div>
-                        </div>
+    <section class="gallery-section" id="gallery">
+        <div class="section-container">
+            <h2 class="section-title slide-left">Галерея работ</h2>
+            <p class="slide-left delay-1">Каждая кукла - это уникальное произведение искусства, созданное в единственном экземпляре</p>
+            
+            <div class="gallery-grid">
+                <div class="doll-card scale-in">
+                    <div class="doll-image-container">
+                        <img src="https://sun9-55.userapi.com/impg/2Tv4V0EvO8B3uEhUWO32wPH-ZNjm_T0wDM6mYw/tD6bDGUInfI.jpg?size=1639x2160&quality=95&sign=d558b8162219aafb71c0faf37ddfeb1f&type=album" alt="Кукла 'Анна'" class="doll-image" onclick="openModal(this)">
                     </div>
-                    
-                    <div class="stream-links">
-                        <a href="https://music.yandex.ru/album/35369443?utm_source=desktop&utm_medium=copy_link" class="stream-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-yandex"></i> Яндекс.Музыка</a>
-                        
+                    <div class="doll-info">
+                        <h3 class="doll-title">Анна</h3>
+                        <p class="doll-description">Фарфоровая кукла в викторианском стиле, ручная роспись</p>
+                        <p class="doll-price">25 000 руб.</p>
+                    </div>
+                </div>
+                
+                <div class="doll-card scale-in delay-1">
+                    <div class="doll-image-container">
+                        <img src="https://sun9-33.userapi.com/impg/HlJ3LMUDH7v5hvF3r6lm1CaKW_3IG6etj9luxA/yBJNLitn0G8.jpg?size=1419x2160&quality=95&sign=9940e48fb9d68df7b70db80aaf4166f5&type=album" alt="Кукла 'Луна'" class="doll-image" onclick="openModal(this)">
+                    </div>
+                    <div class="doll-info">
+                        <h3 class="doll-title">Луна</h3>
+                        <p class="doll-description">Сказочная кукла с подсветкой, натуральные материалы</p>
+                        <p class="doll-price">32 000 руб.</p>
+                    </div>
+                </div>
+                
+                <div class="doll-card scale-in delay-2">
+                    <div class="doll-image-container">
+                        <img src="https://sun9-66.userapi.com/impg/MCZLNO2gHN-_1jTY0ZXTSZOCah2bd5ZKB4Ua6Q/_QlX1XMN44I.jpg?size=1404x2160&quality=95&sign=6f457207001fe4b053831464476f508f&type=album" alt="Кукла 'Морозко'" class="doll-image" onclick="openModal(this)">
+                    </div>
+                    <div class="doll-info">
+                        <h3 class="doll-title">Морозко</h3>
+                        <p class="doll-description">Зимняя кукла с элементами из натурального меха</p>
+                        <p class="doll-price">28 500 руб.</p>
+                    </div>
+                </div>
+                
+                <div class="doll-card scale-in delay-3">
+                    <div class="doll-image-container">
+                        <img src="https://sun9-12.userapi.com/impg/UwhCLmrx5EgITuovnGegePJVxfZka7uXhhC_gQ/4cb0iEUUI1I.jpg?size=1313x2160&quality=95&sign=ac2cb0159cb42fa6b6c382dbdd47330f&type=album" alt="Кукла 'Веснянка'" class="doll-image" onclick="openModal(this)">
+                    </div>
+                    <div class="doll-info">
+                        <h3 class="doll-title">Веснянка</h3>
+                        <p class="doll-description">Весенняя кукла с цветочными акцентами, ручная вышивка</p>
+                        <p class="doll-price">23 000 руб.</p>
+                    </div>
+                </div>
+                
+                <div class="doll-card scale-in">
+                    <div class="doll-image-container">
+                        <img src="https://sun9-69.userapi.com/impg/bXEqOkU7pgJLbwwmh90AfEOTOl90jTadtDFc6Q/qYL2RxavjZM.jpg?size=1193x2160&quality=95&sign=ecabb712b8f4da8aa6f3b37c49b699d0&type=album" alt="Кукла 'Снегурочка'" class="doll-image" onclick="openModal(this)">
+                    </div>
+                    <div class="doll-info">
+                        <h3 class="doll-title">Снегурочка</h3>
+                        <p class="doll-description">Новогодняя кукла с кристаллами Swarovski</p>
+                        <p class="doll-price">35 000 руб.</p>
+                    </div>
+                </div>
+                
+                <div class="doll-card scale-in delay-1">
+                    <div class="doll-image-container">
+                        <img src="https://sun9-3.userapi.com/impg/9N3SvxTwt3YzyAz0oMBgLD_5UqsZgR9Ew7SQYQ/MwgAYYxG-uA.jpg?size=1380x2160&quality=95&sign=2e9f6f9194704b75d27aaab8d6b4a01f&type=album" alt="Кукла 'Багира'" class="doll-image" onclick="openModal(this)">
+                    </div>
+                    <div class="doll-info">
+                        <h3 class="doll-title">Багира</h3>
+                        <p class="doll-description">Экзотическая кукла с элементами восточного стиля</p>
+                        <p class="doll-price">30 000 руб.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="about-section">
+    <section class="about-section" id="about">
         <div class="about-container">
-            <h2 class="section-title">Об исполнителе</h2>
+            <h2 class="section-title slide-right">О мастере</h2>
             <div class="about-content">
-                <div style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('photo_2025-03-28_14-01-14.jpg'); background-size: cover; background-position: center; padding: 20px; border-radius: 10px;">
-                    <h3>Биография</h3>
-                    <p>MUPP (настоящее имя - Артём) - российский хип-хоп исполнитель из Санкт-Петербурга, известный своими мрачными и эмоциональными текстами, а также узнаваемым вокалом. Начал свою музыкальную карьеру в 2019 году и быстро завоевал популярность в андеграунд-сцене.</p>
-                    <p>Его стиль сочетает в себе элементы трэпа, эмо-рэпа и альтернативного хип-хопа. MUPP часто сотрудничает с другими известными исполнителями, такими как Cursed, Sadfriendd и другими.</p>
-                    
+                <img src="https://sun9-26.userapi.com/impg/c626218/v626218891/3c338/fJgE2UM4CgY.jpg?size=1365x2048&quality=96&sign=f4e7a08f8fc961d5f659c6234e492d04&type=album" alt="Мастер кукол" class="about-image slide-left">
+                <div class="slide-right delay-1">
+                    <h3>Елена Иванова</h3>
+                    <p>Я создаю авторские куклы уже более 15 лет. Начав с простых текстильных кукол, я постепенно освоила различные техники и материалы, включая фарфор, полимерную глину и композитные материалы.</p>
+                    <p>Каждая моя кукла - это не просто игрушка, а характер, история, маленькая жизнь, заключенная в материальную форму. Я вкладываю в каждую работу частичку своей души и внимательно прорабатываю каждую деталь.</p>
+                    <p>Мои работы находятся в частных коллекциях в России, Европе и США. Я регулярно участвую в международных выставках авторских кукол и провожу мастер-классы для начинающих мастеров.</p>
+                    <p>Также я являюсь владельцем бренда Esha, под которым я управляю собственным магазином, предлагающим качественные товары и услуги.</p>
                     <div style="margin-top: 20px;">
-                        <h4>Цитаты MUPP:</h4>
-                        <p style="font-style: italic; color: var(--primary);">"Музыка - это мой крик в пустоту, который возвращается эхом."</p>
-                        <p style="font-style: italic; color: var(--primary);">"Мы все носим маски, но моя - самая честная."</p>
-                        <p style="font-style: italic; color: var(--primary);">"Тьма внутри меня ярче любого искусственного света."</p>
-                    </div>
-                </div>
-                <div class="collaborations">
-                    <h3>Совместные работы с Cursed</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                        <div class="collab-card">
-                            <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660d5fc1e5eb1c524f15db96_660d8eaa04ad7515a5086a19/scale_1200" alt="Плачь" class="collab-image">
-                            <h4 class="collab-title">"Плачь" (2022)</h4>
-                            <p style="font-style: italic; color: var(--primary);">"Слезы - это не слабость, а оружие."</p>
-                            <p>Первый совместный трек, ставший визитной карточкой дуэта.</p>
-                        </div>
-                        
-                        <div class="collab-card">
-                            <img src="https://i.scdn.co/image/ab67616d00001e02e715f4c33915e4c5943f2086" alt="Темные улицы" class="collab-image">
-                            <h4 class="collab-title">"Темные улицы" (2023)</h4>
-                            <p style="font-style: italic; color: var(--primary);">"Город не спит, он просто притворяется."</p>
-                            <p>Мрачный трек о ночной жизни и внутренних демонах.</p>
-                        </div>
-                        
-                        <div class="collab-card">
-                            <img src="https://i1.sndcdn.com/artworks-CrTCPisgzysZ2Hfl-WH15RQ-t500x500.jpg" alt="Без чувств" class="collab-image">
-                            <h4 class="collab-title">"Без чувств" (2023)</h4>
-                            <p style="font-style: italic; color: var(--primary);">"Онемение - это боль, которая разучилась кричать."</p>
-                            <p>Эмоциональный трек о сложных отношениях.</p>
-                        </div>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Начала с ООАК (переделка фабричной куклы) и за некоторое время доросла до создания авторской бжд куклы.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
+    <section class="workshop-section" id="workshop">
+        <div class="section-container">
+            <h2 class="section-title slide-left">Мастерская</h2>
+            <p class="slide-left delay-1">Моя мастерская - это место, где рождаются куклы. Здесь я создаю, экспериментирую и совершенствую свое мастерство.</p>
+            
+            
+        </div>
+    </section>
+    
+    <section class="workshop-section" id="process">
+        <div class="section-container">
+            <h2 class="section-title slide-right">Процесс создания</h2>
+            <p class="slide-right delay-1">Создание авторской куклы - это длительный и кропотливый процесс, состоящий из нескольких этапов</p>
+            
+            <div class="process-steps">
+                <div class="process-step slide-left">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Идея и эскиз</h3>
+                        <p>Каждая кукла начинается с идеи. Я разрабатываю концепцию, создаю эскизы и продумываю характер будущего персонажа.</p>
+                    </div>
+                </div>
                 
-                <a href="contact.html">Контакты</a>
+                <div class="process-step slide-right delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Лепка и формовка</h3>
+                        <p>Из глины или пластика создается основа куклы. Затем изготавливаются формы для отливки деталей из фарфора или других материалов.</p>
+                    </div>
+                </div>
                 
+                <div class="process-step slide-left delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Роспись и сборка</h3>
+                        <p>Каждая деталь вручную расписывается специальными красками. Затем кукла собирается, устанавливаются глазки, крепятся волосы.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step slide-right delay-3">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Одежда и аксессуары</h3>
+                        <p>Шьется уникальный костюм, создаются аксессуары. Каждый элемент одежды разрабатывается индивидуально.</p>
+                    </div>
+                </div>
             </div>
-            <p class="copyright">© 2025 MUPP. Все права защищены.</p>
         </div>
-    </footer>
+    </section>
     
-    <script>
-        // Мобильное меню
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('show');
+    <section class="contact-section" id="contact">
+        <div class="section-container">
+            <h2 class="section-title slide-left">Контакты</h2>
+            <p class="slide-left delay-1">Если вы хотите заказать куклу или задать вопросы, заполните форму ниже</p>
+            
+            <div class="contact-form">
+                <div class="form-group slide-right delay-1">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group slide-left delay-2">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group slide-right delay-3">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn scale-in delay-4">Отправить</button>
+            </div>
+            
+            <div style="margin-top: 40px;" class="slide-left delay-4">
+                <h3>Контакты для связи</h3>
+                <p><i class="fas fa-phone"></i> +7 (906) 750-00-87</p>
+                <p><i class="fas fa-envelope"></i> d.ulvachev@yandex.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Сдеревня Меленки, 9, городской округ Клин, Московская область</p>
+                
+       <!-- Подключение API Яндекс.Карт -->
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<!-- Контейнер для карты -->
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<script type="text/javascript">
+    // Инициализация карты после загрузки API
+    ymaps.ready(function () {
+        // Создаем карту с начальной точкой (можно оставить или убрать)
+        var myMap = new ymaps.Map("map", {
+            center: [55.3194, 42.0528], // примерные координаты Меленок
+            zoom: 15
         });
 
-        // Анимация при прокрутке
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.main-nav');
-            if (window.scrollY > 50) {
-                nav.style.backgroundColor = 'rgba(0,0,0,0.9)';
-                nav.style.padding = '10px 0';
-            } else {
-                nav.style.backgroundColor = 'rgba(0,0,0,0.8)';
-                nav.style.padding = '15px 0';
-            }
+        // Создаем метку с адресом
+        var myPlacemark = new ymaps.Placemark([55.3194, 42.0528], {
+            hintContent: 'деревня Меленки, 9, г.о. Клин, Московская обл., 141641',
+            balloonContent: 'Адрес: деревня Меленки, 9, г.о. Клин, Московская обл., 141641'
         });
 
-        // Аудиоплеер
-        const audioPlayer = document.getElementById('audioPlayer');
-        const progressBar = document.getElementById('progressBar');
-        const timeDisplay = document.getElementById('timeDisplay');
-        const playIcon = document.getElementById('playIcon');
+        // Добавляем метку на карту
+        myMap.geoObjects.add(myPlacemark);
 
-        // Обработчик ошибок
-        audioPlayer.addEventListener('error', function() {
-            console.error('Ошибка загрузки аудио:', audioPlayer.error);
-            alert('Не удалось загрузить аудиофайл. Пожалуйста, проверьте подключение к интернету.');
+        // Геокодируем точный адрес для получения координат
+        ymaps.geocode('деревня Меленки, 9, городской округ Клин, Московская область, 141641', {
+            results: 1
+        }).then(function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+            var coords = firstGeoObject.geometry.getCoordinates();
+
+            // Центрируем карту на найденных координатах
+            myMap.setCenter(coords, 15);
+
+            // Обновляем метку на точные координаты
+            myPlacemark.geometry.setCoordinates(coords);
         });
-
-        // Обновление прогресса
-        audioPlayer.addEventListener('timeupdate', updateProgress);
-        audioPlayer.addEventListener('loadedmetadata', function() {
-            updateTimeDisplay();
-        });
-
-        function togglePlay() {
-            if (audioPlayer.paused) {
-                audioPlayer.play().catch(error => {
-                    console.error('Ошибка воспроизведения:', error);
-                    alert('Для воспроизведения требуется взаимодействие с сайтом. Нажмите на кнопку воспроизведения еще раз.');
-                });
-                playIcon.classList.replace('fa-play', 'fa-pause');
-            } else {
-                audioPlayer.pause();
-                playIcon.classList.replace('fa-pause', 'fa-play');
-            }
-        }
-
-        function updateProgress() {
-            if (audioPlayer.duration) {
-                const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-                progressBar.style.width = `${progress}%`;
-                updateTimeDisplay();
-            }
-        }
-
-        function updateTimeDisplay() {
-            const currentTime = formatTime(audioPlayer.currentTime);
-            const duration = formatTime(audioPlayer.duration || 0);
-            timeDisplay.textContent = `${currentTime} / ${duration}`;
-        }
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-
-        function seek(e) {
-            if (audioPlayer.duration) {
-                const percent = e.offsetX / e.target.offsetWidth;
-                audioPlayer.currentTime = percent * audioPlayer.duration;
-            }
-        }
-
-        function setVolume(volume) {
-            audioPlayer.volume = volume;
-        }
-
-        // Инициализация при полной загрузке аудио
-        audioPlayer.addEventListener('canplaythrough', updateTimeDisplay);
-    </script>
-   
-
-<!-- Админ-панель (доступна только авторизованным пользователям) -->
-<div id="adminPanel" style="display: none; position: fixed; bottom: 20px; left: 20px; z-index: 9999;">
-    <button id="adminToggle" style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
-        Админ-панель
-    </button>
-    <div id="adminMenu" style="display: none; background: rgba(0,0,0,0.9); padding: 15px; border-radius: 5px; margin-top: 10px; width: 250px;">
-        <h3 style="margin-top: 0; color: var(--primary);">Управление контентом</h3>
-        <ul style="list-style: none; padding: 0;">
-            <li><a href="#" onclick="showAdminSection('releases')" style="color: white; text-decoration: none; display: block; padding: 5px 0;">Редактировать релизы</a></li>
-            <li><a href="#" onclick="showAdminSection('collabs')" style="color: white; text-decoration: none; display: block; padding: 5px 0;">Редактировать коллаборации</a></li>
-            <li><a href="#" onclick="showAdminSection('bio')" style="color: white; text-decoration: none; display: block; padding: 5px 0;">Редактировать биографию</a></li>
-            <li><a href="#" onclick="logout()" style="color: white; text-decoration: none; display: block; padding: 5px 0;">Выйти</a></li>
-        </ul>
-    </div>
-</div>
-
-<!-- Модальные окна для редактирования -->
-<div id="adminModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9998; overflow-y: auto;">
-    <div style="background: var(--bg); margin: 50px auto; padding: 20px; max-width: 800px; border-radius: 10px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2 id="modalTitle" style="margin: 0;"></h2>
-            <button onclick="closeModal()" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">×</button>
-        </div>
-        <div id="modalContent"></div>
-    </div>
-</div>
-
-<script>
-// Функции для работы админ-панели
-let currentAdminSection = '';
-
-// Проверка авторизации (в реальном проекте использовать сессии/токены)
-function checkAuth() {
-    // Здесь должна быть проверка авторизации через backend
-    const isAdmin = localStorage.getItem('adminLoggedIn') === 'true';
-    if (isAdmin) {
-        document.getElementById('adminPanel').style.display = 'block';
-    }
-}
-
-// Показать/скрыть меню админ-панели
-document.getElementById('adminToggle').addEventListener('click', function() {
-    const menu = document.getElementById('adminMenu');
-    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-});
-
-// Показать раздел администрирования
-function showAdminSection(section) {
-    currentAdminSection = section;
-    document.getElementById('adminMenu').style.display = 'none';
-    document.getElementById('modalTitle').textContent = getSectionTitle(section);
-    document.getElementById('modalContent').innerHTML = getSectionForm(section);
-    document.getElementById('adminModal').style.display = 'block';
-    
-    // Загрузка текущих данных
-    loadSectionData(section);
-}
-
-// Закрыть модальное окно
-function closeModal() {
-    document.getElementById('adminModal').style.display = 'none';
-}
-
-// Получить заголовок раздела
-function getSectionTitle(section) {
-    const titles = {
-        'releases': 'Управление релизами',
-        'collabs': 'Управление коллаборациями',
-        'bio': 'Редактирование биографии'
-    };
-    return titles[section] || 'Администрирование';
-}
-
-// Получить форму для раздела
-function getSectionForm(section) {
-    const forms = {
-        'releases': `
-            <form id="releaseForm">
-                <input type="hidden" id="releaseId">
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Название релиза</label>
-                    <input type="text" id="releaseTitle" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">URL обложки</label>
-                    <input type="text" id="releaseCover" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Дата релиза</label>
-                    <input type="date" id="releaseDate" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Описание</label>
-                    <textarea id="releaseDesc" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 100px;"></textarea>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">URL аудио</label>
-                    <input type="text" id="releaseAudio" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <button type="button" onclick="saveRelease()" style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Сохранить</button>
-                    <button type="button" onclick="closeModal()" style="background: #555; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Отмена</button>
-                </div>
-            </form>
-            <div id="releasesList" style="margin-top: 30px;"></div>
-        `,
-        'collabs': `
-        
-            <form id="collabForm">
-                <input type="hidden" id="collabId">
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Название коллаборации</label>
-                    <input type="text" id="collabTitle" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">URL изображения</label>
-                    <input type="text" id="collabImage" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Год</label>
-                    <input type="number" id="collabYear" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Цитата</label>
-                    <textarea id="collabQuote" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 60px;"></textarea>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Описание</label>
-                    <textarea id="collabDesc" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 100px;"></textarea>
-                </div>
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <button type="button" onclick="saveCollab()" style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Сохранить</button>
-                    <button type="button" onclick="closeModal()" style="background: #555; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Отмена</button>
-                </div>
-            </form>
-            <div id="collabsList" style="margin-top: 30px;"></div>
-        `,
-        'bio': `
-            <form id="bioForm">
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Биография</label>
-                    <textarea id="bioText" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 150px;"></textarea>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Цитата 1</label>
-                    <textarea id="bioQuote1" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 60px;"></textarea>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Цитата 2</label>
-                    <textarea id="bioQuote2" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 60px;"></textarea>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px;">Цитата 3</label>
-                    <textarea id="bioQuote3" style="width: 100%; padding: 8px; background: #333; border: 1px solid #444; color: white; border-radius: 4px; min-height: 60px;"></textarea>
-                </div>
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <button type="button" onclick="saveBio()" style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Сохранить</button>
-                    <button type="button" onclick="closeModal()" style="background: #555; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Отмена</button>
-                </div>
-            </form>
-        `
-    };
-    return forms[section] || '<p>Раздел не найден</p>';
-}
-
-// Загрузка данных раздела
-function loadSectionData(section) {
-    // В реальном проекте здесь должен быть AJAX-запрос к backend
-    switch(section) {
-        case 'releases':
-            // Загрузка списка релизов
-            fetchReleases();
-            break;
-        case 'collabs':
-            // Загрузка списка коллабораций
-            fetchCollabs();
-            break;
-        case 'bio':
-            // Загрузка биографии
-            fetchBio();
-            break;
-    }
-}
-
-// Функции для работы с релизами
-function fetchReleases() {
-    // Здесь должен быть AJAX-запрос для получения списка релизов
-    // Пример:
-    /*
-    fetch('/api/releases')
-        .then(response => response.json())
-        .then(data => {
-            let html = '<h3>Существующие релизы</h3><ul style="list-style: none; padding: 0;">';
-            data.forEach(release => {
-                html += `
-                    <li style="padding: 10px; background: rgba(255,255,255,0.05); margin-bottom: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>${release.title}</span>
-                        <div>
-                            <button onclick="editRelease(${release.id})" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Ред.</button>
-                            <button onclick="deleteRelease(${release.id})" style="background: #ff3333; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Удал.</button>
-                        </div>
-                    </li>
-                `;
-            });
-            html += '</ul><button onclick="newRelease()" style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Добавить релиз</button>';
-            document.getElementById('releasesList').innerHTML = html;
-        });
-    */
-    
-    // Заглушка для демонстрации
-    document.getElementById('releasesList').innerHTML = `
-        <h3>Существующие релизы</h3>
-        <ul style="list-style: none; padding: 0;">
-            <li style="padding: 10px; background: rgba(255,255,255,0.05); margin-bottom: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
-                <span>Vendetta</span>
-                <div>
-                    <button onclick="editRelease(1)" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Ред.</button>
-                    <button onclick="deleteRelease(1)" style="background: #ff3333; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Удал.</button>
-                </div>
-            </li>
-        </ul>
-        <button onclick="newRelease()" style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Добавить релиз</button>
-    `;
-}
-
-function newRelease() {
-    document.getElementById('releaseId').value = '';
-    document.getElementById('releaseTitle').value = '';
-    document.getElementById('releaseCover').value = '';
-    document.getElementById('releaseDate').value = '';
-    document.getElementById('releaseDesc').value = '';
-    document.getElementById('releaseAudio').value = '';
-}
-
-function editRelease(id) {
-    // Здесь должен быть AJAX-запрос для получения данных релиза
-    // Заглушка для демонстрации
-    if (id === 1) {
-        document.getElementById('releaseId').value = '1';
-        document.getElementById('releaseTitle').value = 'Vendetta';
-        document.getElementById('releaseCover').value = 'https://sun9-77.userapi.com/s/v1/ig2/2UORRVytshb6pwSZUUuLhQ4zS9u28QAGnq28AhmZuPc_yl-kIhHhSiUmgbTI8gjgzLOaiSH5fqqrmxPEXM1BUVL4.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=_r__LG1aE1Rzp6GCULs4ITWye0hY0LORYjxRxMdJlqE&cs=807x807';
-        document.getElementById('releaseDate').value = '2023-05-15';
-        document.getElementById('releaseDesc').value = 'Хитовый трек, покоривший чарты и собравший миллионы прослушиваний';
-        document.getElementById('releaseAudio').value = 'vendetta_-_Sadfriendd_x_MUPP_sped_up_reverb_256_kbps_-_vendetta_-_Sadfriendd_x_MUPP_sped_up_r_(SkySound.cc).mp3';
-    }
-}
-
-function saveRelease() {
-    const id = document.getElementById('releaseId').value;
-    const title = document.getElementById('releaseTitle').value;
-    const cover = document.getElementById('releaseCover').value;
-    const date = document.getElementById('releaseDate').value;
-    const desc = document.getElementById('releaseDesc').value;
-    const audio = document.getElementById('releaseAudio').value;
-    
-    // Здесь должен быть AJAX-запрос для сохранения данных
-    alert(`Релиз "${title}" ${id ? 'обновлен' : 'добавлен'}!`);
-    fetchReleases();
-}
-
-function deleteRelease(id) {
-    if (confirm('Вы уверены, что хотите удалить этот релиз?')) {
-        // Здесь должен быть AJAX-запрос для удаления
-        alert('Релиз удален!');
-        fetchReleases();
-    }
-}
-
-// Функции для работы с коллаборациями (аналогичны функциям для релизов)
-function fetchCollabs() {
-    // Заглушка для демонстрации
-    document.getElementById('collabsList').innerHTML = `
-        <h3>Существующие коллаборации</h3>
-        <ul style="list-style: none; padding: 0;">
-            <li style="padding: 10px; background: rgba(255,255,255,0.05); margin-bottom: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
-                <span>Плачь</span>
-                <div>
-                    <button onclick="editCollab(1)" style="background: var(--primary); color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Ред.</button>
-                    <button onclick="deleteCollab(1)" style="background: #ff3333; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Удал.</button>
-                </div>
-            </li>
-        </ul>
-        <button onclick="newCollab()" style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Добавить коллаборацию</button>
-    `;
-}
-
-function newCollab() {
-    document.getElementById('collabId').value = '';
-    document.getElementById('collabTitle').value = '';
-    document.getElementById('collabImage').value = '';
-    document.getElementById('collabYear').value = '';
-    document.getElementById('collabQuote').value = '';
-    document.getElementById('collabDesc').value = '';
-}
-
-function editCollab(id) {
-    if (id === 1) {
-        document.getElementById('collabId').value = '1';
-        document.getElementById('collabTitle').value = 'Плачь';
-        document.getElementById('collabImage').value = 'https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660d5fc1e5eb1c524f15db96_660d8eaa04ad7515a5086a19/scale_1200';
-        document.getElementById('collabYear').value = '2022';
-        document.getElementById('collabQuote').value = 'Слезы - это не слабость, а оружие.';
-        document.getElementById('collabDesc').value = 'Первый совместный трек, ставший визитной карточкой дуэта.';
-    }
-}
-
-function saveCollab() {
-    const id = document.getElementById('collabId').value;
-    const title = document.getElementById('collabTitle').value;
-    const image = document.getElementById('collabImage').value;
-    const year = document.getElementById('collabYear').value;
-    const quote = document.getElementById('collabQuote').value;
-    const desc = document.getElementById('collabDesc').value;
-    
-    alert(`Коллаборация "${title}" ${id ? 'обновлена' : 'добавлена'}!`);
-    fetchCollabs();
-}
-
-function deleteCollab(id) {
-    if (confirm('Вы уверены, что хотите удалить эту коллаборацию?')) {
-        alert('Коллаборация удалена!');
-        fetchCollabs();
-    }
-}
-
-// Функции для работы с биографией
-function fetchBio() {
-    // Заглушка для демонстрации
-    document.getElementById('bioText').value = 'MUPP (настоящее имя - Артём) - российский хип-хоп исполнитель из Санкт-Петербурга, известный своими мрачными и эмоциональными текстами, а также узнаваемым вокалом. Начал свою музыкальную карьеру в 2019 году и быстро завоевал популярность в андеграунд-сцене.';
-    document.getElementById('bioQuote1').value = 'Музыка - это мой крик в пустоту, который возвращается эхом.';
-    document.getElementById('bioQuote2').value = 'Мы все носим маски, но моя - самая честная.';
-    document.getElementById('bioQuote3').value = 'Тьма внутри меня ярче любого искусственного света.';
-}
-
-function saveBio() {
-    const bio = document.getElementById('bioText').value;
-    const quote1 = document.getElementById('bioQuote1').value;
-    const quote2 = document.getElementById('bioQuote2').value;
-    const quote3 = document.getElementById('bioQuote3').value;
-    
-    alert('Биография обновлена!');
-}
-
-// Выход из системы
-function logout() {
-    localStorage.removeItem('adminLoggedIn');
-    window.location.reload();
-}
-
-// Проверка авторизации при загрузке страницы
-checkAuth();
-
-// Для демонстрации - кнопка входа (в реальном проекте должна быть отдельная страница входа)
-document.addEventListener('DOMContentLoaded', function() {
-    if (!localStorage.getItem('adminLoggedIn')) {
-        const login = prompt('Введите пароль для доступа к админ-панели (демо: 123)');
-        if (login === '123') {
-            localStorage.setItem('adminLoggedIn', 'true');
-            checkAuth();
-        }
-    }
-});
-
-
-
-
+    });
 </script>
-   
-</body>
-</html>
-
